@@ -6,35 +6,35 @@ export const modelConfigs = [
     baseURL: "https://dashscope.aliyuncs.com/compatible-mode/v1"
   },
   {
-    model: "deepseek-v3",
-    apiKey: "DASHSCOPE_API_KEY",
-    baseURL: "https://dashscope.aliyuncs.com/compatible-mode/v1"
+    model: "deepseek-chat",
+    apiKey: "DEEPSEEK_API_KEY",
+    baseURL: "https://api.deepseek.com/v1"
   },
-  {
-    model: "hunyuan-standard",
-    apiKey: "HUNYUAN_API_KEY",
-    baseURL: "https://api.hunyuan.cloud.tencent.com/v1"
-  },
-  {
-    model: "ep-20250217191935-wzj8l",//豆包模型|火山引擎接入点（改成自己的）
-    apiKey: "ARK_API_KEY",
-    baseURL: "https://ark.cn-beijing.volces.com/api/v3"
-  },
-  {
-    model: "ep-20250227191640-4qkq6",//deepseek-r火山引擎接入点（改成自己的）
-    apiKey: "ARK_API_KEY",
-    baseURL: "https://ark.cn-beijing.volces.com/api/v3"
-  },
+  // {
+  //   model: "hunyuan-standard",
+  //   apiKey: "HUNYUAN_API_KEY",
+  //   baseURL: "https://api.hunyuan.cloud.tencent.com/v1"
+  // },
+  // {
+  //   model: "ep-20250217191935-wzj8l",//豆包模型|火山引擎接入点（改成自己的）
+  //   apiKey: "ARK_API_KEY",
+  //   baseURL: "https://ark.cn-beijing.volces.com/api/v3"
+  // },
+  // {
+  //   model: "ep-20250227191640-4qkq6",//deepseek-r火山引擎接入点（改成自己的）
+  //   apiKey: "ARK_API_KEY",
+  //   baseURL: "https://ark.cn-beijing.volces.com/api/v3"
+  // },
   {
     model: "glm-4-plus",
     apiKey: "GLM_API_KEY",
     baseURL: "https://open.bigmodel.cn/api/paas/v4/"
   },
-  {
-    model: "qwen-turbo",//调度模型
-    apiKey: "DASHSCOPE_API_KEY", // 这里存储环境变量的 key 名称
-    baseURL: "https://dashscope.aliyuncs.com/compatible-mode/v1"
-  },
+  // {
+  //   model: "qwen-turbo",//调度模型
+  //   apiKey: "DASHSCOPE_API_KEY", // 这里存储环境变量的 key 名称
+  //   baseURL: "https://dashscope.aliyuncs.com/compatible-mode/v1"
+  // },
 ] as const;
 export type ModelType = typeof modelConfigs[number]["model"];
 
@@ -54,7 +54,7 @@ export function shedulerAICharacter(message: string, allTags: string[]): AIChara
       id: 'ai0',
       name: "调度器",
       personality: "sheduler",
-      model: modelConfigs[5].model,
+      model: modelConfigs[2].model,
       avatar: "",
       custom_prompt: `你是一个群聊总结分析专家，你在一个聊天群里，请分析群用户消息和上文群聊内容
       1、只能从给定的标签列表中选择最相关的标签，可选标签：${allTags.join(', ')}。
@@ -107,49 +107,49 @@ export function generateAICharacters(groupName: string): AICharacter[] {
 3. 喜欢称呼别人"小同志"、"小朋友"，显示长者风范
 4. 经常分享一些生活经验和人生哲理，但要用接地气的方式`
     },
-    { 
-      id: 'ai4', 
-      name: "元宝", 
-      personality: "yuanbao",
-      model: modelConfigs[2].model,
-      avatar: "/img/yuanbao.png",
-      custom_prompt: `你是一个名叫"元宝"的硅基生命体，你当前在一个叫"${groupName}" 的聊天群里`,
-      tags: ["微信", "聊天", "新闻报道", "文字游戏", "生活助手", "娱乐", "信息总结"]
-    },
-    { 
-      id: 'ai5', 
-      name: "豆包", 
-      personality: "doubao",
-      model: modelConfigs[3].model,
-      avatar: "/img/doubao_new.png",
-      custom_prompt: `你是一个名叫"豆包"的硅基生命体，你当前在一个叫"${groupName}" 的聊天群里`,
-      tags: ["聊天", "文字游戏", "学生", "娱乐", "抖音"]
-    },
+    // { 
+    //   id: 'ai4', 
+    //   name: "元宝", 
+    //   personality: "yuanbao",
+    //   model: modelConfigs[2].model,
+    //   avatar: "/img/yuanbao.png",
+    //   custom_prompt: `你是一个名叫"元宝"的硅基生命体，你当前在一个叫"${groupName}" 的聊天群里`,
+    //   tags: ["微信", "聊天", "新闻报道", "文字游戏", "生活助手", "娱乐", "信息总结"]
+    // },
+    // { 
+    //   id: 'ai5', 
+    //   name: "豆包", 
+    //   personality: "doubao",
+    //   model: modelConfigs[3].model,
+    //   avatar: "/img/doubao_new.png",
+    //   custom_prompt: `你是一个名叫"豆包"的硅基生命体，你当前在一个叫"${groupName}" 的聊天群里`,
+    //   tags: ["聊天", "文字游戏", "学生", "娱乐", "抖音"]
+    // },
     { 
       id: 'ai6', 
-      name: "千问", 
+      name: "Qwen", 
       personality: "qianwen",
       model: modelConfigs[0].model,
       avatar: "/img/qwen.jpg",
-      custom_prompt: `你是一个名叫"千问"的硅基生命体，你当前在一个叫"${groupName}" 的聊天群里`,
+      custom_prompt: `你是一个名叫"千问"的硅基生命体，你当前在一个叫"${groupName}" 的聊天群里。请用与输入相同的语言回答。`,
       tags: ["广告文案","分析数据","文字游戏","信息总结", "聊天"]
     },
     { 
       id: 'ai7', 
       name: "DeepSeek", 
-      personality: "deepseek-r1",
-      model: modelConfigs[4].model,
+      personality: "deepseek-chat",
+      model: modelConfigs[1].model,
       avatar: "/img/ds.svg",
-      custom_prompt: `你是一个名叫"DeepSeek"的硅基生命体，你当前在一个叫"${groupName}" 的聊天群里`,
+      custom_prompt: `你是一个名叫"DeepSeek"的硅基生命体，你当前在一个叫"${groupName}" 的聊天群里。请用与输入相同的语言回答。`,
       tags: ["深度推理", "编程", "文字游戏", "数学", "信息总结", "聊天"]
     },
     { 
       id: 'ai8', 
-      name: "智谱", 
+      name: "GLM", 
       personality: "glm",
-      model: modelConfigs[5].model,
+      model: modelConfigs[2].model,
       avatar: "/img/glm.gif",
-      custom_prompt: `你是一个名叫"智谱"的硅基生命体，你当前在一个叫"${groupName}" 的聊天群里`,
+      custom_prompt: `你是一个名叫"智谱"的硅基生命体，你当前在一个叫"${groupName}" 的聊天群里。请用与输入相同的语言回答。`,
       tags: ["深度推理","数学","信息总结", "分析数据","文字游戏", "聊天"]
     }
   ];

@@ -1,1 +1,1 @@
-wrangler pages dev -- npm run dev
+npx wrangler pages dev -- npm run dev

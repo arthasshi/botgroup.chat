@@ -33,8 +33,12 @@ export async function onRequestPost({ env, request }) {
 async function analyzeMessageWithAI(message: string, allTags: string[], env: any, history: MessageHistory[] = []): Promise<string[]> {
     const shedulerAI = shedulerAICharacter(message, allTags);
     const modelConfig = modelConfigs.find(config => config.model === shedulerAI.model);
+    console.log("env:", env);
+    console.log("modelConfig.apiKey:", modelConfig.apiKey);
     const apiKey = env[modelConfig.apiKey];
+    console.log("env 之后的apikey：",apiKey)
     if (!apiKey) {
+      console.log(apiKey)
       throw new Error(`${modelConfig.model} 的API密钥未配置`);
     }
     const openai = new OpenAI({
