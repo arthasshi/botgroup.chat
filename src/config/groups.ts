@@ -11,9 +11,9 @@ export const groups: Group[] = [
   {
     id: 'group1',
     name: 'Silicon-Carbon Lifeform Discussion Group',
-    description: '',
+    description: '可以闲聊，当然最好也回复下大家的发言，不过本群整体来说自由度更高',
     members: [ 'ai6', 'ai7','ai8'],
-    isGroupDiscussionMode: false
+    isGroupDiscussionMode: true
   },
   // {
   //   id: 'group2',
